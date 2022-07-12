@@ -26,6 +26,13 @@ namespace CabInvoiceGenerator
                 COST_PER_KM = 10;
                 COST_PER_MINUTE = 1;
             }
+            if (type.Equals(RideType.PREMIUM))
+            {
+                MINIMUM_FARE = 20;
+                COST_PER_KM = 15;
+                COST_PER_MINUTE = 2;
+                
+            }
         }
 
         // UC1 - Method to calculate fare for single ride
@@ -80,14 +87,16 @@ namespace CabInvoiceGenerator
     }
 }
 
-//UC-4
-//Invoice Services
-//Given User ID, The Invoice Services Get The List Of Rides From The Rides Repository,And Return The Invoice.
+//UC-5
+//Premium Rides (Bonus)
+//Cab Agencies Should Support Two Category Of Rides:
+//-Normal Rides : Rs 10 /Km, Rs 1 /m, Minimum Fare Of Rs 5.
+//-Premium Rides : Rs 15 /Km, Rs 2 /m, Minimum Fare Of Rs 20.
 
 //CabInvoiceGenTestCase
 //  Tests in group: 5
 
-//  Total Duration: 26 ms
+//  Total Duration: 40 ms
 
 //Outcomes
 //   5 Passed
