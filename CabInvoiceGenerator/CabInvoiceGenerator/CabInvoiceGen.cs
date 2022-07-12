@@ -80,20 +80,18 @@ namespace CabInvoiceGenerator
     }
 }
 
-//UC-3
-//Enhanced Invoice
-//The Invoice Generator Should Now Return The Folloeing As A Part Of The Invoice
-//Total Number Of Rides
-//Total Fare
-//Average Fare Per Ride
+//UC-4
+//Invoice Services
+//Given User ID, The Invoice Services Get The List Of Rides From The Rides Repository,And Return The Invoice.
 
 //CabInvoiceGenTestCase
-//  Tests in group: 4
+//  Tests in group: 5
 
 //  Total Duration: 26 ms
 
 //Outcomes
-//   4 Passed
+//   5 Passed
+
 
 
 
