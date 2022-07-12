@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CabInvoiceGenerator
@@ -48,20 +47,35 @@ namespace CabInvoiceGenerator
             {
                 throw ex;
             }
+
+        }
+        // UC2 - Method to calculate agreegate fare for multiple rides
+        public double CalculateAgreegateFare(Ride[] rides)
+        {
+            double totalFare = 0;
+            if (rides.Length == 0)
+                throw new CabInvoiceGeneratorException(CabInvoiceGeneratorException.ExceptionType.NULL_RIDES, "No Rides Found");
+            foreach (Ride ride in rides)
+            {
+                totalFare += CalculateFare(ride.time, ride.distance);
+            }
+            double agreegateFare = Math.Max(totalFare, MINIMUM_FARE);
+            return agreegateFare;
         }
     }
 }
 
-//UC-1
-//Given a distance and time, the invoice generator shoud return total fare of the journey
-//cost - Rs. 10 Per Kilo meter + Rs. 1 Per Minute
-//Min Fare Rs - 5.
+//UC-2
+//Multiple Rides
+//The Invoice Generator Should Now Take In Multiple rides, and Calculate the aggregate total for all.
 
-//CabInvoicGeneratorTest
-//  Tests in group: 2
+//CabInvoiceGenTestCase
+//  Tests in group: 4
 
-//  Total Duration: 3.1 min
+//  Total Duration: 26 ms
 
 //Outcomes
-//   2 Passed
+//   4 Passed
+
+
 
