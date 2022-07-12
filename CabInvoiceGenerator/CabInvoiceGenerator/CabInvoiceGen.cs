@@ -50,6 +50,7 @@ namespace CabInvoiceGenerator
 
         }
         // UC2 - Method to calculate agreegate fare for multiple rides
+        /*
         public double CalculateAgreegateFare(Ride[] rides)
         {
             double totalFare = 0;
@@ -62,12 +63,29 @@ namespace CabInvoiceGenerator
             double agreegateFare = Math.Max(totalFare, MINIMUM_FARE);
             return agreegateFare;
         }
+        */
+        // UC3
+        public InvoiceSummary CalculateAgreegateFare(Ride[] rides)
+        {
+            double totalFare = 0;
+            if (rides.Length == 0)
+                throw new CabInvoiceGeneratorException(CabInvoiceGeneratorException.ExceptionType.NULL_RIDES, "No Rides Found");
+            foreach (Ride ride in rides)
+            {
+                totalFare += CalculateFare(ride.time, ride.distance);
+            }
+            totalFare =  Math.Max(totalFare, MINIMUM_FARE);
+            return new InvoiceSummary(rides.Length, totalFare);
+        }
     }
 }
 
-//UC-2
-//Multiple Rides
-//The Invoice Generator Should Now Take In Multiple rides, and Calculate the aggregate total for all.
+//UC-3
+//Enhanced Invoice
+//The Invoice Generator Should Now Return The Folloeing As A Part Of The Invoice
+//Total Number Of Rides
+//Total Fare
+//Average Fare Per Ride
 
 //CabInvoiceGenTestCase
 //  Tests in group: 4
